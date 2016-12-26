@@ -23,8 +23,8 @@ function registerUser(req,res){
                 }
                 users.insert({"username":username, "password":encryptedPassword}, callback)
             },
-            function(callback){
-                callback(null, {status:"SUCCESS", "username":username, "password":encryptedPassword});
+            function(obj, callback){
+                callback(null, {status:"SUCCESS", "username":obj.username, "password":obj.password});
             }
         ],
         function(err, result){
