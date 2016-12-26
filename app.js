@@ -11,7 +11,7 @@ var apiRoot = "/";
 database.start();
 
 mainPage.register(app, apiRoot);
-mainPage.register(app, apiRoot + "users/");
+users.register(app, apiRoot + "users/");
 
 app.listen(8080);
 
