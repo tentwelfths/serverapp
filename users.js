@@ -16,10 +16,10 @@ function registerUser(req,res){
         var username = query.username || body.username;
         var encryptedPassword = query.password || body.password;
         if(!username){
-            return res.send({status:"FAILED", reason:"USERNAME NOT PROVIDED"});
+            return res.status(200).send({status:"FAILED", reason:"USERNAME NOT PROVIDED"});
         }
         if(!encryptedPassword){
-            return res.send({status:"FAILED", reason:"PASSWORD NOT PROVIDED"});
+            return res.status(200).send({status:"FAILED", reason:"PASSWORD NOT PROVIDED"});
         }
         var users = db.collection("users");
         async.waterfall([
@@ -28,7 +28,7 @@ function registerUser(req,res){
             },
             function(obj, callback){
                 if(obj){
-                    return res.send({status:"FAILED", reason:"USERNAME TAKEN"});
+                    return res.status(200).send({status:"FAILED", reason:"USERNAME TAKEN"});
                 }
                 users.insert({"username":username, "password":encryptedPassword}, callback)
             },
@@ -40,7 +40,7 @@ function registerUser(req,res){
             if(err){
                 console.log("something is messed up");
             }
-            return res.send(result);
+            return res.status(200).send(result);
         })
     }
 }
