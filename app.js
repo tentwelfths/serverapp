@@ -9,3 +9,5 @@ var apiRoot = "/";
 mainPage.register(app, apiRoot);
 
 app.listen(3000);
+
+console.log("App Run");
