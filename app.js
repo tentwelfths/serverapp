@@ -6,7 +6,7 @@ var mainPage = require("./mainPage.js");
 
 var apiRoot = "/";
 
-mainPage.register(app, apiRoot);
+mainPage.register(app, "");
 
 app.listen(3000);
 
