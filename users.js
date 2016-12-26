@@ -8,9 +8,9 @@ function registerUser(req,res){
     console.log("register called");
     var db = database.GetDatabase();
     if(db != null){
-        console.log(req);
-        var query = qs.parse(req.querystring);
-        var body = qs.parse(req.body);
+        //console.log(req);
+        var query = req.query;
+        var body = req.body;
         console.log(query);
         console.log(body);
         var username = query.username || body.username;
