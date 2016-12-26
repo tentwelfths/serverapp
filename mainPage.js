@@ -4,7 +4,7 @@ function loadMainPage(req,res){
     var response = {
         status:"It worked!"
     };
-    res.send(JSON.stringify(response));
+    res.status(200).send(JSON.stringify(response));
 }
 
 module.exports.register = function(app, root){

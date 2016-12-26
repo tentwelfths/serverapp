@@ -33,11 +33,12 @@ function registerUser(req,res){
                 users.insert({"username":username, "password":encryptedPassword}, callback)
             },
             function(obj, callback){
-                callback(null, {status:"SUCCESS", "username":obj.username, "password":obj.password});
+                callback(null, {status:"SUCCESS", "username":username, "password":encryptedPassword});
             }
         ],
         function(err, result){
             if(err){
+                return res.status(200).send({status:"FAILED", reason:"UNKNOWN"});
                 console.log("something is messed up");
             }
             return res.status(200).send(result);
