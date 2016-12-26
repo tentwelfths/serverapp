@@ -16,9 +16,11 @@ function registerUser(req,res){
         var username = query.username || body.username;
         var encryptedPassword = query.password || body.password;
         if(!username){
+            console.log("Insert failed no name");
             return res.status(200).send({status:"FAILED", reason:"USERNAME NOT PROVIDED"});
         }
         if(!encryptedPassword){
+            console.log("Insert failed no pass");
             return res.status(200).send({status:"FAILED", reason:"PASSWORD NOT PROVIDED"});
         }
         var users = db.collection("users");
@@ -28,11 +30,13 @@ function registerUser(req,res){
             },
             function(obj, callback){
                 if(obj){
+                    console.log("Insert failed taken");
                     return res.status(200).send({status:"FAILED", reason:"USERNAME TAKEN"});
                 }
                 users.insert({"username":username, "password":encryptedPassword}, callback)
             },
             function(obj, callback){
+                console.log("Insert successful");
                 callback(null, {status:"SUCCESS", "username":username, "password":encryptedPassword});
             }
         ],
