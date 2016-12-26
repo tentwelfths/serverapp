@@ -2,8 +2,8 @@
 function loadMainPage(req,res){
     console.log("WEGNOWING");
     var response = {
-        status:"It worked!";
-    }
+        status:"It worked!"
+    };
     res.send(JSON.stringify(response));
 }
 
