@@ -8,10 +8,18 @@ function registerUser(req,res){
     console.log("register called");
     var db = database.GetDatabase();
     if(db != null){
-        var querystring = qs.parse(req.url);
+        var query = qs.parse(req.url);
         var body = qs.parse(req.body);
-        var username = querystring.username || body.username;
-        var encryptedPassword = querystring.password || body.password;
+        console.log(query);
+        console.log(body);
+        var username = query.username || body.username;
+        var encryptedPassword = query.password || body.password;
+        if(!username){
+            return res.send({status:"FAILED", reason:"USERNAME NOT PROVIDED"});
+        }
+        if(!encryptedPassword){
+            return res.send({status:"FAILED", reason:"PASSWORD NOT PROVIDED"});
+        }
         var users = db.collection("users");
         async.waterfall([
             function(callback){
