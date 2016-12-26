@@ -9,8 +9,8 @@ function registerUser(req,res){
     var db = database.GetDatabase();
     if(db != null){
         //console.log(req);
-        var query = req.query;
-        var body = req.body;
+        var query = req.query || {};
+        var body = req.body || {};
         console.log(query);
         console.log(body);
         var username = query.username || body.username;
