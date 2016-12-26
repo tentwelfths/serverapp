@@ -1,5 +1,6 @@
 
 function loadMainPage(req,res){
+    console.log("WEGNOWING");
     var response = {
         status:"It worked!";
     }
