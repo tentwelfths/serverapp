@@ -7,6 +7,6 @@ function loadMainPage(req,res){
     res.send(JSON.stringify(response));
 }
 
-exports.register = function(app, root){
+module.exports.register = function(app, root){
     app.get(root, loadMainPage);
 }
