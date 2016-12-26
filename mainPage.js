@@ -9,5 +9,5 @@ function loadMainPage(req,res){
 
 module.exports.register = function(app, root){
     console.log("mainpage registered");
-    app.get(root, loadMainPage);
+    app.get(root + "index", loadMainPage);
 }
