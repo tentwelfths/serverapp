@@ -8,4 +8,4 @@ var apiRoot = "/";
 
 mainPage.register(app, apiRoot);
 
-app.listen(7000);
+app.listen(3000);
