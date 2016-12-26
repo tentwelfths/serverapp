@@ -14,7 +14,7 @@
             },
         "env_production": {
                 "NODE_ENV": "production",
-                "PORT": 7000
+                "PORT": 3000
             },
         "env_dev"       : {
                 "NODE_ENV": "dev",
