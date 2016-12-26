@@ -17,19 +17,13 @@ function registerUser(req,res){
             function(callback){
                 users.findOne({"username":username}, callback);
             },
-            function(err, obj, callback){
-                if(err){
-                    return res.send(err);
-                }
+            function(obj, callback){
                 if(obj){
                     return res.send({status:"FAILED", reason:"USERNAME TAKEN"});
                 }
                 users.insert({"username":username, "password":encryptedPassword}, callback)
             },
-            function(err, callback){
-                if(err){
-                    return res.send(err);
-                }
+            function(callback){
                 callback(null, {status:"SUCCESS", "username":username, "password":encryptedPassword});
             }
         ],
@@ -37,6 +31,7 @@ function registerUser(req,res){
             if(err){
                 console.log("something is messed up");
             }
+            return res.send(result);
         })
     }
 }
