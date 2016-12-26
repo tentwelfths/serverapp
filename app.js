@@ -5,8 +5,11 @@ var app = express();
 var mainPage = require("./mainPage.js");
 var users = require("./users.js");
 var database = require("./db.js");
-
+var bodyParser = require('body-parser')
 var apiRoot = "/";
+
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }))
 
 database.start();
 
