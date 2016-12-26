@@ -5,6 +5,7 @@ var async = require("async");
 var qs = require("qs");
 
 function registerUser(req,res){
+    console.log("register called");
     var db = database.GetDatabase();
     if(db != null){
         var querystring = qs.parse(req.url);
@@ -42,6 +43,7 @@ function registerUser(req,res){
 
 
 module.exports.register = function(app, root){
+    console.log("users registered");
     app.get(root + "register", registerUser);
     app.post(root + "register", registerUser);
 }

@@ -12,6 +12,7 @@ exports.start = function(){
             console.log("AIN'T NO DATABASE");
         }
         else{
+            console.log("database started");
             myDB = db;
         }
     })
