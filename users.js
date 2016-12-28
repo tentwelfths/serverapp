@@ -59,13 +59,16 @@ function displayUser(req,res){
             var users = db.collection("users");
             async.waterfall([
                 function(callback){
+                    console.log("Trying to find " + req.params.name);
                     users.findOne({"username":req.params.name}, callback);
                 },
                 function(obj, callback){
                     if(obj){
+                        console.log("Found " + req.params.name);
                         return pug.render("userPage.pug");
                     }
                     else{
+                        console.log("Couldn't find " + req.params.name);
                         callback("failure");
                     }
                 }
