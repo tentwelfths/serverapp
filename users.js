@@ -77,7 +77,7 @@ function displayUser(req,res){
                     if(err)
                         return res.status(404).send();
                     else
-                        return pug.render("userPage.pug");
+                        return pug.renderFile("userPage.pug");
                 }
             );
         }
