@@ -65,7 +65,7 @@ function displayUser(req,res){
                 function(obj, callback){
                     if(obj){
                         console.log("Found " + req.params.name);
-                        return pug.render("userPage.pug");
+                        callback(null);
                     }
                     else{
                         console.log("Couldn't find " + req.params.name);
@@ -76,6 +76,8 @@ function displayUser(req,res){
                 function(err, result){
                     if(err)
                         return res.status(404).send();
+                    else
+                        return pug.render("userPage.pug");
                 }
             );
         }
