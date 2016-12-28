@@ -76,8 +76,10 @@ function displayUser(req,res){
                 function(err, result){
                     if(err)
                         return res.status(404).send();
-                    else
+                    else{
+                        res.locals.name = req.params.name;
                         return res.render("userPage.pug");
+                    }
                 }
             );
         }
