@@ -96,7 +96,7 @@ function loginUser(req,res){
                 redis.rpush(id, token,username);
                 redis.expire(id, 3600);
                 console.log("Just made an instance for " + username);
-                callback(null, {status:"SUCCESS", "id":id.toString(16), "token":token.toString(16)});
+                callback(null, {status:"SUCCESS", "id":id.toString("hex"), "token":token.toString("hex")});
             },
         ],
         function(err, result){
