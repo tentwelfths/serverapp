@@ -3,6 +3,7 @@ var database = require("./db.js");
 var cryto = require("crypto");
 var async = require("async");
 var qs = require("qs");
+var pug = require("pug");
 
 function registerUser(req,res){
     console.log("register called");
@@ -50,9 +51,37 @@ function registerUser(req,res){
     }
 }
 
+function displayUser(req,res){
+    console.log("display called");
+    var db = database.GetDatabase();
+    if(db != null){
+        if(req.params.name){
+            var users = db.collection("users");
+            async.waterfall([
+                function(callback){
+                    users.findOne({"username":username}, callback);
+                },
+                function(obj, callback){
+                    if(obj){
+                        return pug.render("userPage.pug");
+                    }
+                    else{
+                        callback("failure");
+                    }
+                }
+            ],
+                function(err, result){
+                    if(err)
+                        return res.status(404).send();
+                }
+            );
+        }
+    }
+}
 
 module.exports.register = function(app, root){
     console.log("users registered");
     app.get(root + "register", registerUser);
     app.post(root + "register", registerUser);
+    app.get(root + ":name", displayUser);
 }
