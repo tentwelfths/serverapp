@@ -1,6 +1,6 @@
 
 var database = require("./db.js");
-var crpyto = require("crypto");
+var crypto = require("crypto");
 var async = require("async");
 var qs = require("qs");
 const pug = require("pug");
