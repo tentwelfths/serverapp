@@ -78,6 +78,8 @@ function loginUser(req,res){
             },
             function(obj, callback){
                 if(obj){
+                    console.log("Found user " + username);
+                    console.log(encryptedPassword + " -- " + obj.password);
                     if(obj.password == encryptedPassword){
                         crypto.randomBytes(20, function(err, id){
                             if(err)callback(err);
@@ -85,6 +87,7 @@ function loginUser(req,res){
                                 callback(null, id, token);
                             }); 
                         });
+                        return;
                     }
                 }
                 callback("failed", {status:"FAILED", reason:"Incorrect credentials"});
