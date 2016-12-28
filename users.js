@@ -3,7 +3,7 @@ var database = require("./db.js");
 var cryto = require("crypto");
 var async = require("async");
 var qs = require("qs");
-var pug = require("pug");
+const pug = require("pug");
 
 function registerUser(req,res){
     console.log("register called");

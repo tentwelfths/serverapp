@@ -5,11 +5,13 @@ var app = express();
 var mainPage = require("./mainPage.js");
 var users = require("./users.js");
 var database = require("./db.js");
-var bodyParser = require('body-parser')
+var bodyParser = require('body-parser');
+const pug = require('pug');
 var apiRoot = "/";
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.json());
+app.set('view engine', 'pug');
 
 database.start();
 
