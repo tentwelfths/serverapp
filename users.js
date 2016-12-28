@@ -59,7 +59,7 @@ function displayUser(req,res){
             var users = db.collection("users");
             async.waterfall([
                 function(callback){
-                    users.findOne({"username":username}, callback);
+                    users.findOne({"username":req.params.name}, callback);
                 },
                 function(obj, callback){
                     if(obj){
