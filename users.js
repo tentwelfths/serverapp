@@ -110,6 +110,104 @@ function loginUser(req,res){
     }
 }
 
+/*
+Data:
+{
+    TotalTestsRun:(int)
+    TotalAudioTests:(int)
+    TotalVisualTests:(int)
+    TotalAVTests:(int)
+    TotalSingleSessions:(int)
+    TotalAudioSingleSessions:(int)
+    TotalVisualSingleSessions:(int)
+    TotalAVSingleSessions:(int)
+    TotalFiveSessions:(int)
+    TotalAudioFiveSessions:(int)
+    TotalVisualFiveSessions:(int)
+    TotalAVFiveSessions:(int)
+    TotalTenSessions:(int)
+    TotalAudioTenSessions:(int)
+    TotalVisualTenSessions:(int)
+    TotalAVTenSessions:(int)
+    BestReactionTime:(float)
+    BestFiveSet:{
+        Times: [(float),(float),(float),(float),(float)]
+    }
+    BestTenSet:{
+        Times: [(float),(float),(float),(float),(float),(float),(float),(float),(float),(float)]
+    }
+    BestAudioFiveSet:{
+        Times: [(float),(float),(float),(float),(float)]
+    }
+    BestAudioTenSet:{
+        Times: [(float),(float),(float),(float),(float),(float),(float),(float),(float),(float)]
+    }
+    BestVisualFiveSet:{
+        Times: [(float),(float),(float),(float),(float)]
+    }
+    BestVisualTenSet:{
+        Times: [(float),(float),(float),(float),(float),(float),(float),(float),(float),(float)]
+    }
+    BestAVFiveSet:{
+        Times: [(float),(float),(float),(float),(float)]
+    }
+    BestAVTenSet:{
+        Times: [(float),(float),(float),(float),(float),(float),(float),(float),(float),(float)]
+    }
+    AverageTime:(float)
+    AverageAudioTime:(float)
+    AverageVisualTime:(float)
+    AverageAVTime:(float)
+    AverageFiveSetTimes:{
+        Times: [(float),(float),(float),(float),(float)]
+    }
+    AverageTenSetTimes:{
+        Times: [(float),(float),(float),(float),(float),(float),(float),(float),(float),(float)]
+    }
+    AverageAudioFiveSetTimes:{
+        Times: [(float),(float),(float),(float),(float)]
+    }
+    AverageAudioTenSetTimes:{
+        Times: [(float),(float),(float),(float),(float),(float),(float),(float),(float),(float)]
+    }
+    AverageVisualFiveSetTimes:{
+        Times: [(float),(float),(float),(float),(float)]
+    }
+    AverageVisualTenSetTimes:{
+        Times: [(float),(float),(float),(float),(float),(float),(float),(float),(float),(float)]
+    }
+    AverageAVFiveSetTimes:{
+        Times: [(float),(float),(float),(float),(float)]
+    }
+    AverageAVTenSetTimes:{
+        Times: [(float),(float),(float),(float),(float),(float),(float),(float),(float),(float)]
+    }
+}
+
+*/
+
+function storeSession(req, res){
+    console.log("Logging session");
+    var db = database.GetDatabase();
+    if(db != null){
+        //console.log(req);
+        var query = req.query || {};
+        var body = req.body || {};
+        console.log(query);
+        console.log(body);
+        var id = query.id || body.id;
+        var token = query.token || body.token;
+        var testType = query.testType || body.testType;
+        var testCount = query.testCount || body.testCount;
+        var times = query.times || body.times;
+        console.log("id: " + id);
+        console.log("token: " + token);
+        console.log("testType: " + testType);
+        console.log("testCount: " + testCount);
+        console.log("times: " + times);
+    }
+}
+
 function displayUser(req,res){
     console.log("display called");
     var db = database.GetDatabase();
@@ -151,5 +249,7 @@ module.exports.register = function(app, root){
     app.post(root + "register", registerUser);
     app.get(root + "login", loginUser);
     app.post(root + "login", loginUser);
+    app.get(root + "submitSession", storeSession);
+    app.post(root + "submitSession", storeSession);
     app.get(root + ":name", displayUser);
 }
