@@ -221,6 +221,7 @@ function storeSession(req, res){
             //Mongo shit
         }
     }
+    return res.status(200).send({status:"SUCCESS"});
 }
 
 function displayUser(req,res){
