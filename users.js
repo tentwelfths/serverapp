@@ -188,9 +188,10 @@ Data:
 
 function GetUsernameFromSession(id, token){
     redis.lrange(id, 0, -1, function(err, result){
-    if(result.length > 0 && token === result[0])
-    {
-        return result[1];
+        if(result.length > 0 && token === result[0])
+        {
+            return result[1];
+        }
     }
 }
 
