@@ -93,7 +93,7 @@ function loginUser(req,res){
                 callback("failed", {status:"FAILED", reason:"Incorrect credentials"});
             },
             function(id, token, callback){
-                redis.rpush(id, token,username);
+                redis.rpush(id, token, username);
                 redis.expire(id, 3600);
                 console.log("Just made an instance for " + username);
                 callback(null, {status:"SUCCESS", "id":id.toString("hex"), "token":token.toString("hex")});
@@ -186,6 +186,14 @@ Data:
 
 */
 
+function GetUsernameFromSession(id, token){
+    redis.lrange(id, 0, -1, function(err, result){
+    if(result.length > 0 && token === result[0])
+    {
+        return result[1];
+    }
+}
+
 function storeSession(req, res){
     console.log("Logging session");
     var db = database.GetDatabase();
@@ -197,14 +205,20 @@ function storeSession(req, res){
         console.log(body);
         var id = query.id || body.id;
         var token = query.token || body.token;
+        var username = GetUsernameFromSession(id, token);
+        
         var testType = query.testType || body.testType;
         var testCount = query.testCount || body.testCount;
         var times = query.times || body.times;
+        console.log("username: " + username);
         console.log("id: " + id);
         console.log("token: " + token);
         console.log("testType: " + testType);
         console.log("testCount: " + testCount);
         console.log("times: " + times);
+        if(username){
+            //Mongo shit
+        }
     }
 }
 
