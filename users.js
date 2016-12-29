@@ -192,7 +192,7 @@ function GetUsernameFromSession(id, token){
         {
             return result[1];
         }
-    }
+    });
 }
 
 function storeSession(req, res){
