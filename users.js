@@ -244,6 +244,10 @@ function InitializeStatEntry(obj){
 
 function GetUsernameFromSession(id, token){
     redis.lrange(id, 0, -1, function(err, result){
+        console.log("err: " + err)
+        console.log("result length: " + result.length);
+        for(var i = 0; i < result.length; ++i)
+            console.log("result " + i + ": " + result[i]);
         if(result.length > 0 && token === result[0])
         {
             return result[1];
